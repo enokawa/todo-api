@@ -5,18 +5,18 @@ import (
 	"net/http"
 )
 
-// Handler interfaces
-type Handler interface {
+// ToDoHandler interfaces
+type ToDoHandler interface {
 	Create(w http.ResponseWriter, r *http.Request)
 }
 
-type handler struct{}
+type todoHandler struct{}
 
 // NewHandler is ...
-func NewHandler() Handler {
-	return handler{}
+func NewHandler() ToDoHandler {
+	return todoHandler{}
 }
 
-func (h handler) Create(w http.ResponseWriter, r *http.Request) {
+func (h todoHandler) Create(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "Create!\n")
 }
