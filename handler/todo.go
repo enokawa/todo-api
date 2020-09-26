@@ -3,6 +3,8 @@ package handler
 import (
 	"fmt"
 	"net/http"
+
+	"github.com/enokawa/todo-api/usecase"
 )
 
 // ToDoHandler interfaces
@@ -18,5 +20,12 @@ func NewHandler() ToDoHandler {
 }
 
 func (h todoHandler) Create(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprint(w, "Create!\n")
+	u := usecase.NewToDoUsecase()
+
+	res, err := u.Create("my title")
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	fmt.Println(res)
 }
